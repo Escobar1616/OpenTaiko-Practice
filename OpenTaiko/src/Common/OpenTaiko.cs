@@ -462,8 +462,8 @@ internal class OpenTaiko : Game {
 		WindowPosition = new Silk.NET.Maths.Vector2D<int>(ConfigIni.nWindowBaseXPosition, ConfigIni.nWindowBaseYPosition);
 		WindowSize = new Silk.NET.Maths.Vector2D<int>(ConfigIni.nWindowWidth, ConfigIni.nWindowHeight);
 		FullScreen = ConfigIni.bFullScreen;
-		VSync = ConfigIni.bEnableVSync;
-		Framerate = 0;
+		VSync = false;
+		Framerate = 120;
 
 		base.Configuration();
 	}
@@ -611,18 +611,39 @@ internal class OpenTaiko : Game {
 						break;
 
 					case CStage.EStage.StartUp:
-						#region [ *** ]
-						//-----------------------------
-						if (this.nDrawLoopReturnValue != 0) {
-							ChangeStage(stageTitle);
-							Trace.TraceInformation("----------------------");
-							Trace.TraceInformation("■ Title");
+					#region [ *** ]
+					//-----------------------------
+					if (this.nDrawLoopReturnValue != 0) {
+						// SaveFileデフォルト設定（Title画面スキップのため）
+						OpenTaiko.SaveFile = 0;
+						OpenTaiko.PlayerSide = 0;
+						for (int i = 0; i < 2; i++)
+							OpenTaiko.NamePlate.tNamePlateRefreshTitles(i);
 
-							this.tExecuteGarbageCollection();
+						// 曲列挙スレッドの起動
+						if (EnumSongs != null && !EnumSongs.IsSongListEnumStarted) {
+							actEnumSongs.Activate();
+							if (!ConfigIni.PreAssetsLoading) {
+								actEnumSongs.CreateManagedResource();
+								actEnumSongs.CreateUnmanagedResource();
+							}
+							stageSongSelect.bIsEnumeratingSongs = true;
+							EnumSongs.Init();
+							EnumSongs.StartEnumFromDisk();
 						}
-						//-----------------------------
-						#endregion
-						break;
+
+						ChangeStage(stageSongSelect);
+						Trace.TraceInformation("----------------------");
+						Trace.TraceInformation("■ Song Select (Direct)");
+
+						OpenTaiko.latestSongSelect = stageSongSelect;
+
+						this.tExecuteGarbageCollection();
+					}
+					//-----------------------------
+					#endregion
+					break;
+
 
 					case CStage.EStage.Title:
 						#region [ *** ]
@@ -697,9 +718,7 @@ internal class OpenTaiko : Game {
 							case (int)CStageTitle.EReturnValue.EXIT:
 								#region [ *** ]
 								//-----------------------------
-								ChangeStage(stageExit);
-								Trace.TraceInformation("----------------------");
-								Trace.TraceInformation("■ End");
+								base.Exit();
 								//-----------------------------
 								#endregion
 								break;

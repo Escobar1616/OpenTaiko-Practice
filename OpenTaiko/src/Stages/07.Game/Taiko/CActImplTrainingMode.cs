@@ -10,6 +10,7 @@ class CActImplTrainingMode : CActivity {
 
 	public override void Activate() {
 		this.nCurrentMeasure = 0;
+		this.nResumeMeasure = 0;
 		this.bTrainingPAUSE = false;
 		this.n最終演奏位置ms = 0;
 
@@ -339,6 +340,8 @@ class CActImplTrainingMode : CActivity {
 
 		OpenTaiko.TJA.t全チップの再生一時停止();
 		OpenTaiko.stageGameScreen.bPAUSE = true;
+		// 停止時、再生開始位置まで戻す
+		this.nCurrentMeasure = this.nResumeMeasure;
 		OpenTaiko.stageGameScreen.actPlayInfo.NowMeasure[0] = this.nCurrentMeasure;
 		this.bTrainingPAUSE = true;
 
@@ -355,6 +358,8 @@ class CActImplTrainingMode : CActivity {
 
 		finalStartBar = this.nCurrentMeasure;
 		if (finalStartBar < 0) finalStartBar = 0;
+		// 再生開始時に現在の小節を記憶
+		this.nResumeMeasure = finalStartBar;
 
 		int n演奏開始Chip = OpenTaiko.stageGameScreen.t演奏位置の変更(finalStartBar);
 
@@ -425,6 +430,7 @@ class CActImplTrainingMode : CActivity {
 	}
 
 	public int nCurrentMeasure;
+	public int nResumeMeasure;
 	public int nMeasureCount;
 
 	#region [private]

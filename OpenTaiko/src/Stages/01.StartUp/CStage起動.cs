@@ -213,14 +213,8 @@ internal class CStage起動 : CStage {
 				if (es != null && es.IsSongListEnumCompletelyDone)                          // 曲リスト作成が終わったら
 				{
 					OpenTaiko.Songs管理 = (es != null) ? es.Songs管理 : null;      // 最後に、曲リストを拾い上げる
-
-					if (OpenTaiko.InputManager.Keyboard.KeyPressed((int)SlimDXKeys.Key.Return)) {
-						OpenTaiko.Skin.soundDecideSFX.tPlay();
-						return 1;
-					}
+					return 1; // 自動的に次のステージへ遷移
 				}
-
-				OpenTaiko.Tx.Readme.t2D描画(0, 0);
 			}
 
 		}

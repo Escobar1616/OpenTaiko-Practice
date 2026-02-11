@@ -58,6 +58,10 @@ internal class CAct演奏演奏情報 : CActivity {
 			y -= dy;
 			OpenTaiko.actTextConsole.Print(x, y, CTextConsole.EFontType.White, string.Format("Frame:         {0:####0} fps", OpenTaiko.FPS.NowFPS));
 			y -= dy;
+			OpenTaiko.actTextConsole.Print(x, y, CTextConsole.EFontType.White, string.Format("Audio:         {0}", OpenTaiko.SoundManager.GetCurrentSoundDeviceType()));
+			y -= dy;
+			OpenTaiko.actTextConsole.Print(x, y, CTextConsole.EFontType.White, string.Format("Latency:       {0:####0} ms", OpenTaiko.SoundManager.GetSoundDelay()));
+			y -= dy;
 			OpenTaiko.actTextConsole.Print(x, y, CTextConsole.EFontType.White, NotesTextN);
 			y -= dy;
 			OpenTaiko.actTextConsole.Print(x, y, CTextConsole.EFontType.White, NotesTextE);

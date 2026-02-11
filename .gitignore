@@ -29,7 +29,7 @@
 /OpenTaiko/bin
 /OpenTaiko/Cache
 /OpenTaiko/Capture_img
-/OpenTaiko/Config.ini
+#/OpenTaiko/Config.ini
 /OpenTaiko/bs1770gain**
 /Test/dll/CSharpTest.Net.Collections.*
 /Test/dll/SlimDX.*

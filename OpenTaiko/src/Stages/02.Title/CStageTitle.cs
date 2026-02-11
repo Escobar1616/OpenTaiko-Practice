@@ -28,6 +28,9 @@ internal class CStageTitle : CStage {
 		try {
 			UnloadSaveFile();
 
+			// 常にモード選択画面へ直接遷移（演出シーケンスをスキップ）
+			bSaveFileLoaded = true;
+
 			this.PuchiChara.IdleAnimation();
 
 			SkipSaveFileStep();
@@ -69,11 +72,10 @@ internal class CStageTitle : CStage {
 
 
 			b音声再生 = false;
-			if (bSaveFileLoaded == false)
-				OpenTaiko.Skin.soundEntry.tPlay();
 			if (OpenTaiko.ConfigIni.bBGMPlayVoiceSound)
 				OpenTaiko.Skin.bgmタイトルイン.tPlay();
 			base.Activate();
+
 		} finally {
 			Trace.TraceInformation("タイトルステージの活性化を完了しました。");
 			Trace.Unindent();
@@ -148,18 +150,10 @@ internal class CStageTitle : CStage {
 			if (base.ePhaseID == CStage.EPhase.Common_NORMAL)    // プラグインの入力占有がない
 			{
 				if (OpenTaiko.InputManager.Keyboard.KeyPressed((int)SlimDXKeys.Key.Escape) || OpenTaiko.Pad.bPressed(EInstrumentPad.Drums, EPad.Cancel)) {
-					if (bモード選択) {
-						OpenTaiko.Skin.soundCancelSFX.tPlay();
-						bSaveFileLoaded = false;
-						UnloadSaveFile();
-						if (bSaveFileLoaded == false)
-							OpenTaiko.Skin.soundEntry.tPlay();
-					} else {
-						OpenTaiko.Skin.soundDecideSFX.tPlay();
-						this._idNextStageForced = EReturnValue.EXIT;
-						this.actFO.tフェードアウト開始(0, 500);
-						base.ePhaseID = CStage.EPhase.Common_FADEOUT;
-					}
+					OpenTaiko.Skin.soundDecideSFX.tPlay();
+					this._idNextStageForced = EReturnValue.EXIT;
+					this.actFO.tフェードアウト開始(0, 500);
+					base.ePhaseID = CStage.EPhase.Common_FADEOUT;
 				}
 #if DEBUG
 				if (OpenTaiko.InputManager.Keyboard.KeyPressed((int)SlimDXKeys.Key.F8)) {
