@@ -462,8 +462,8 @@ internal class OpenTaiko : Game {
 		WindowPosition = new Silk.NET.Maths.Vector2D<int>(ConfigIni.nWindowBaseXPosition, ConfigIni.nWindowBaseYPosition);
 		WindowSize = new Silk.NET.Maths.Vector2D<int>(ConfigIni.nWindowWidth, ConfigIni.nWindowHeight);
 		FullScreen = ConfigIni.bFullScreen;
-		VSync = false;
-		Framerate = 120;
+		VSync = ConfigIni.bEnableVSync;
+		Framerate = 0;
 
 		base.Configuration();
 	}
