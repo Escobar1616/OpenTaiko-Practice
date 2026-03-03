@@ -194,6 +194,10 @@
 		"SETTINGS_GAME_TIMINGDISPLAY_MS": "Миллисекунды (+0ms)",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY": "Только при OK/Плохо",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC": "Показывать отклонение тайминга только при оценке OK или Плохо.",
+		"SETTINGS_GAME_JUDGEFASTSLOW": "Изображение Быстро/Медленно",
+		"SETTINGS_GAME_JUDGEFASTSLOW_DESC": "Заменяет изображение оценки OK на Judge_Fast или Judge_Slow в зависимости от тайминга.",
+		"SETTINGS_GAME_HIDEPERFECT": "Скрыть Оценку Идеально",
+		"SETTINGS_GAME_HIDEPERFECT_DESC": "Скрывает изображение оценки Идеально. Другие эффекты остаются без изменений.",
 		"SETTINGS_GAME_BRANCHANIME": "Набор анимаций веток",
 		"SETTINGS_GAME_BRANCHANIME_DESC": "Изменяет набор анимаций, используемых при\nветвлении партитуры.\nTYPE-A: Поколение-2\nTYPE-B: Поколение-3\n",
 

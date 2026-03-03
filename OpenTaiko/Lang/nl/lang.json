@@ -194,6 +194,10 @@
 		"SETTINGS_GAME_TIMINGDISPLAY_MS": "Milliseconden (+0ms)",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY": "Alleen bij OK / Slecht",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC": "Toont de timing-afwijking alleen wanneer het oordeel OK of Slecht is.",
+		"SETTINGS_GAME_JUDGEFASTSLOW": "Snel/Langzaam Oordeel",
+		"SETTINGS_GAME_JUDGEFASTSLOW_DESC": "Vervangt het OK-oordeel door Judge_Fast of Judge_Slow op basis van het ritme.",
+		"SETTINGS_GAME_HIDEPERFECT": "Verberg Perfect Oordeel",
+		"SETTINGS_GAME_HIDEPERFECT_DESC": "Verbergt het Perfekte oordeel. Andere effecten blijven ongewijzigd.",
 		"SETTINGS_GAME_BRANCHANIME": "Tak Animaties",
 		"SETTINGS_GAME_BRANCHANIME_DESC": "Verandert de animaties wanneer een nummer vertakt.\nTYPE-A: Gen-2\nTYPE-B: Gen-3",
 

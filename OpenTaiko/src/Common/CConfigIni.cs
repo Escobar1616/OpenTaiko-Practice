@@ -1163,6 +1163,8 @@ internal class CConfigIni : INotifyPropertyChanged {
 	/// 追加判定表示を可/不可の時のみ表示する
 	/// </summary>
 	public bool bTimingDisplayOnlyImperfect;
+	public bool bJudgeFastSlow;
+	public bool bHidePerfectJudge;
 
 	public bool ShowExExtraAnime;
 
@@ -1721,6 +1723,8 @@ internal class CConfigIni : INotifyPropertyChanged {
 		this.bJudgeCountDisplay = false;
 		this.nTimingDisplayMode = 0;
 		this.bTimingDisplayOnlyImperfect = false;
+		this.bJudgeFastSlow = false;
+		this.bHidePerfectJudge = false;
 
 		ShowExExtraAnime = true;
 
@@ -2386,6 +2390,10 @@ internal class CConfigIni : INotifyPropertyChanged {
 		sw.WriteLine("TimingDisplayMode={0}", this.nTimingDisplayMode);
 		sw.WriteLine("; 追加判定表示を可/不可の時のみ表示する (0:OFF, 1:ON)");
 		sw.WriteLine("TimingDisplayOnlyImperfect={0}", this.bTimingDisplayOnlyImperfect ? 1 : 0);
+		sw.WriteLine("; \u53ef\u3092FAST/SLOW\u753b\u50cf\u3067\u7f6e\u304d\u63db\u3048\u308b (0:OFF, 1:ON)");
+		sw.WriteLine("JudgeFastSlow={0}", this.bJudgeFastSlow ? 1 : 0);
+		sw.WriteLine("; \u826f\u306e\u5224\u5b9a\u753b\u50cf\u3092\u975e\u8868\u793a\u306b\u3059\u308b (0:OFF, 1:ON)");
+		sw.WriteLine("HidePerfectJudge={0}", this.bHidePerfectJudge ? 1 : 0);
 		sw.WriteLine();
 		sw.WriteLine("; 裏表移行アニメーションを有効する (0:OFF, 1:ON)");
 		sw.WriteLine("ShowExExtraAnime={0}", this.ShowExExtraAnime ? 1 : 0);
@@ -3320,6 +3328,12 @@ internal class CConfigIni : INotifyPropertyChanged {
 				break;
 			case "TimingDisplayOnlyImperfect":
 				this.bTimingDisplayOnlyImperfect = CConversion.bONorOFF(value[0]);
+				break;
+			case "JudgeFastSlow":
+				this.bJudgeFastSlow = CConversion.bONorOFF(value[0]);
+				break;
+			case "HidePerfectJudge":
+				this.bHidePerfectJudge = CConversion.bONorOFF(value[0]);
 				break;
 			case "ShowExExtraAnime":
 				this.ShowExExtraAnime = CConversion.bONorOFF(value[0]);

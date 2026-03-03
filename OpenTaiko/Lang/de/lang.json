@@ -194,6 +194,10 @@
 		"SETTINGS_GAME_TIMINGDISPLAY_MS": "Millisekunden (+0ms)",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY": "Nur bei OK/Schlecht anzeigen",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC": "Zeigt die Timing-Abweichung nur an, wenn das Urteil OK oder Schlecht ist.",
+		"SETTINGS_GAME_JUDGEFASTSLOW": "Fast/Slow-Urteilsbild",
+		"SETTINGS_GAME_JUDGEFASTSLOW_DESC": "Ersetzt das OK-Urteilsbild je nach Timing durch Judge_Fast oder Judge_Slow.",
+		"SETTINGS_GAME_HIDEPERFECT": "Perfekt-Urteil verbergen",
+		"SETTINGS_GAME_HIDEPERFECT_DESC": "Verbirgt das Perfekt-Urteilsbild. Andere Effekte bleiben erhalten.",
 		"SETTINGS_GAME_BRANCHANIME": "Zweiganimationssatz",
 		"SETTINGS_GAME_BRANCHANIME_DESC": "Ändert den Animationssatz, der verwendet wird, wenn eine Liedvariante ausgewählt wird.\nTYP-A: 2. Generation\nTYP-B: 3. Generation",
 

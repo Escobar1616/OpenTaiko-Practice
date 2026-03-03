@@ -44,47 +44,52 @@ internal class CActImplJudgeText : CActivity {
 					}
 					judgeC.counter.Tick();
 
-					if (OpenTaiko.Tx.Judge != null) {
-						float moveValue = CubicEaseOut(judgeC.counter.CurrentValue / 410.0f) - 1.0f;
+					float moveValue = CubicEaseOut(judgeC.counter.CurrentValue / 410.0f) - 1.0f;
 
-						float baseX = 0;
-						float baseY = 0;
+					float baseX = 0;
+					float baseY = 0;
 
-						if (OpenTaiko.ConfigIni.nPlayerCount == 5) {
-							baseX = OpenTaiko.Skin.Game_Judge_5P[0] + (OpenTaiko.Skin.Game_UIMove_5P[0] * j);
-							baseY = OpenTaiko.Skin.Game_Judge_5P[1] + (OpenTaiko.Skin.Game_UIMove_5P[1] * j);
-						} else if (OpenTaiko.ConfigIni.nPlayerCount == 4 || OpenTaiko.ConfigIni.nPlayerCount == 3) {
-							baseX = OpenTaiko.Skin.Game_Judge_4P[0] + (OpenTaiko.Skin.Game_UIMove_4P[0] * j);
-							baseY = OpenTaiko.Skin.Game_Judge_4P[1] + (OpenTaiko.Skin.Game_UIMove_4P[1] * j);
-						} else {
-							baseX = OpenTaiko.Skin.Game_Judge_X[j];
-							baseY = OpenTaiko.Skin.Game_Judge_Y[j];
+					if (OpenTaiko.ConfigIni.nPlayerCount == 5) {
+						baseX = OpenTaiko.Skin.Game_Judge_5P[0] + (OpenTaiko.Skin.Game_UIMove_5P[0] * j);
+						baseY = OpenTaiko.Skin.Game_Judge_5P[1] + (OpenTaiko.Skin.Game_UIMove_5P[1] * j);
+					} else if (OpenTaiko.ConfigIni.nPlayerCount == 4 || OpenTaiko.ConfigIni.nPlayerCount == 3) {
+						baseX = OpenTaiko.Skin.Game_Judge_4P[0] + (OpenTaiko.Skin.Game_UIMove_4P[0] * j);
+						baseY = OpenTaiko.Skin.Game_Judge_4P[1] + (OpenTaiko.Skin.Game_UIMove_4P[1] * j);
+					} else {
+						baseX = OpenTaiko.Skin.Game_Judge_X[j];
+						baseY = OpenTaiko.Skin.Game_Judge_Y[j];
+					}
+					baseX += OpenTaiko.stageGameScreen.GetJPOSCROLLX(j);
+					baseY += OpenTaiko.stageGameScreen.GetJPOSCROLLY(j);
+
+					float x = baseX + (moveValue * OpenTaiko.Skin.Game_Judge_Move[0]);
+					float y = baseY + (moveValue * OpenTaiko.Skin.Game_Judge_Move[1]);
+
+					int opacity = (int)(255f - (judgeC.counter.CurrentValue >= 360 ? ((judgeC.counter.CurrentValue - 360) / 50.0f) * 255f : 0f));
+
+					// 判定テクスチャ描画
+					if (!judgeC.hideJudgeImage) {
+						if (judgeC.judgeOverrideTexture != null) {
+							// Fast/Slow 差し替え画像
+							judgeC.judgeOverrideTexture.Opacity = opacity;
+							judgeC.judgeOverrideTexture.t2D描画(x, y);
+						} else if (OpenTaiko.Tx.Judge != null) {
+							OpenTaiko.Tx.Judge.Opacity = opacity;
+							OpenTaiko.Tx.Judge.t2D描画(x, y, judgeC.rc);
 						}
-						baseX += OpenTaiko.stageGameScreen.GetJPOSCROLLX(j);
-						baseY += OpenTaiko.stageGameScreen.GetJPOSCROLLY(j);
+					}
 
-						float x = baseX + (moveValue * OpenTaiko.Skin.Game_Judge_Move[0]);
-						float y = baseY + (moveValue * OpenTaiko.Skin.Game_Judge_Move[1]);
-
-						int opacity = (int)(255f - (judgeC.counter.CurrentValue >= 360 ? ((judgeC.counter.CurrentValue - 360) / 50.0f) * 255f : 0f));
-						OpenTaiko.Tx.Judge.Opacity = opacity;
-						OpenTaiko.Tx.Judge.t2D描画(x, y, judgeC.rc);
-
-						// タイミングズレ表示（判定枠基準・右揃え・アニメーション無し）
-						if (judgeC.timingTexture != null) {
-							// GetNoteOriginX/Y が全プレイヤー数に対応した判定枠の座標を返す
-							float frameX = OpenTaiko.stageGameScreen.GetNoteOriginX(j);
-							float frameY = OpenTaiko.stageGameScreen.GetNoteOriginY(j);
-							// 右揃え: 右端を (判定枠中心X + offset[0]) に固定
-							float timingX = frameX + OpenTaiko.Skin.Game_Notes_Size[0] / 2.0f
-								+ OpenTaiko.Skin.Game_TimingDisplay_Offset[0]
-								- judgeC.timingTexture.szTextureSize.Width;
-							// Y: 判定枠の下端 + offset[1]
-							float timingY = frameY + OpenTaiko.Skin.Game_Notes_Size[1]
-								+ OpenTaiko.Skin.Game_TimingDisplay_Offset[1];
-							judgeC.timingTexture.Opacity = opacity;
-							judgeC.timingTexture.t2D描画(timingX, timingY);
-						}
+					// タイミングズレ表示（判定枠基準・右揃え・アニメーション無し）
+					if (judgeC.timingTexture != null) {
+						float frameX = OpenTaiko.stageGameScreen.GetNoteOriginX(j);
+						float frameY = OpenTaiko.stageGameScreen.GetNoteOriginY(j);
+						float timingX = frameX + OpenTaiko.Skin.Game_Notes_Size[0] / 2.0f
+							+ OpenTaiko.Skin.Game_TimingDisplay_Offset[0]
+							- judgeC.timingTexture.szTextureSize.Width;
+						float timingY = frameY + OpenTaiko.Skin.Game_Notes_Size[1]
+							+ OpenTaiko.Skin.Game_TimingDisplay_Offset[1];
+						judgeC.timingTexture.Opacity = opacity;
+						judgeC.timingTexture.t2D描画(timingX, timingY);
 					}
 				}
 			}
@@ -108,6 +113,21 @@ internal class CActImplJudgeText : CActivity {
 
 		int height = OpenTaiko.Tx.Judge.szTextureSize.Height / 5;
 		judgeAnime.rc = new Rectangle(0, (int)njudge * height, OpenTaiko.Tx.Judge.szTextureSize.Width, height);
+
+		// 良の判定画像を非表示
+		if (njudge == 0 && OpenTaiko.ConfigIni.bHidePerfectJudge) {
+			judgeAnime.hideJudgeImage = true;
+		}
+
+		// 可をFAST/SLOW画像で置き換え
+		if (njudge == 1 && OpenTaiko.ConfigIni.bJudgeFastSlow && msDelta.HasValue) {
+			int fastSlowValue = -msDelta.Value;
+			if (fastSlowValue > 0 && OpenTaiko.Tx.Judge_Fast != null) {
+				judgeAnime.judgeOverrideTexture = OpenTaiko.Tx.Judge_Fast;
+			} else if (fastSlowValue < 0 && OpenTaiko.Tx.Judge_Slow != null) {
+				judgeAnime.judgeOverrideTexture = OpenTaiko.Tx.Judge_Slow;
+			}
+		}
 
 		// タイミングズレテクスチャ生成
 		if (msDelta.HasValue && OpenTaiko.ConfigIni.nTimingDisplayMode != 0 && _timingFont != null
@@ -169,6 +189,8 @@ internal class CActImplJudgeText : CActivity {
 		public Rectangle rc;
 		public CCounter counter = new CCounter();
 		public CTexture? timingTexture;
+		public CTexture? judgeOverrideTexture; // 借用参照（所有しない・Dispose不要）
+		public bool hideJudgeImage;
 	}
 
 	private float CubicEaseOut(float p) {

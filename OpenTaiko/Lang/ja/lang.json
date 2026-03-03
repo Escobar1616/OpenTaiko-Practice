@@ -196,6 +196,10 @@
 		"SETTINGS_GAME_TIMINGDISPLAY_MS": "ミリ秒 (+0ms)",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY": "可/不可の時のみ表示",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC": "タイミングズレ表示を可・不可の時のみ表示します。良の場合は表示しません。",
+		"SETTINGS_GAME_JUDGEFASTSLOW": "可をFAST/SLOW画像で置き換え",
+		"SETTINGS_GAME_JUDGEFASTSLOW_DESC": "可の判定画像を、早叩き時はJudge_Fast、遅叩き時はJudge_Slowに置き換えます。",
+		"SETTINGS_GAME_HIDEPERFECT": "良の判定画像を非表示",
+		"SETTINGS_GAME_HIDEPERFECT_DESC": "良の判定画像を表示しません。その他の演出はそのままです。",
 		"SETTINGS_GAME_BRANCHANIME": "譜面分岐時アニメーション",
 		"SETTINGS_GAME_BRANCHANIME_DESC": "譜面分岐時のアニメーション\nTYPE-A: 太鼓7～太鼓14\nTYPE-B: 太鼓15～",
 

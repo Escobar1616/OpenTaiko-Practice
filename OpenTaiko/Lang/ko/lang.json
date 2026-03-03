@@ -196,6 +196,10 @@
 		"SETTINGS_GAME_TIMINGDISPLAY_MS": "밀리초 (+0ms)",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY": "OK/나쁨 때만 표시",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC": "판정이 OK 또는 나쁨일 때만 타이밍 편차를 표시합니다.",
+		"SETTINGS_GAME_JUDGEFASTSLOW": "Fast/Slow 판정 이미지",
+		"SETTINGS_GAME_JUDGEFASTSLOW_DESC": "OK 판정 이미지를 타이밍에 따라 Judge_Fast 또는 Judge_Slow로 대체합니다.",
+		"SETTINGS_GAME_HIDEPERFECT": "완벽 판정 숨기기",
+		"SETTINGS_GAME_HIDEPERFECT_DESC": "완벽 판정 이미지를 숨깁니다. 다른 이펙트는 그대로 유지됩니다.",
 		"SETTINGS_GAME_BRANCHANIME": "분기 애니메이션 ",
 		"SETTINGS_GAME_BRANCHANIME_DESC": "보면분기가 일어난 경우 사용되는 애니메이션을 변경합니다.\nTYPE-A: Gen-2\nTYPE-B: Gen-3\n",
 

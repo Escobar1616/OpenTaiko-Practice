@@ -414,6 +414,8 @@ class TextureLoader {
 
 		Notes_Arm = TxC(GAME + @$"Notes_Arm.png");
 		Judge = TxC(GAME + @$"Judge.png");
+		Judge_Fast = TxC(GAME + @$"Judge_Fast.png");
+		Judge_Slow = TxC(GAME + @$"Judge_Slow.png");
 		ChipEffect = TxC(GAME + @$"ChipEffect.png");
 		ScoreRank = TxC(GAME + @$"ScoreRank.png");
 
@@ -2473,7 +2475,9 @@ class TextureLoader {
 		Notes_Arm,
 		ChipEffect,
 		ScoreRank,
-		Judge;
+		Judge,
+		Judge_Fast,
+		Judge_Slow;
 	public CTexture Judge_Meter,
 		Bar,
 		Bar_Branch;

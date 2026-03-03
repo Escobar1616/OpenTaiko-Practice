@@ -424,6 +424,14 @@ internal class CActConfigList : CActivity {
 			CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC"));
 		this.list項目リスト.Add(this.iTimingDisplayOnlyImperfect);
 
+		this.iJudgeFastSlow = new CItemToggle(CLangManager.LangInstance.GetString("SETTINGS_GAME_JUDGEFASTSLOW"), OpenTaiko.ConfigIni.bJudgeFastSlow,
+			CLangManager.LangInstance.GetString("SETTINGS_GAME_JUDGEFASTSLOW_DESC"));
+		this.list項目リスト.Add(this.iJudgeFastSlow);
+
+		this.iHidePerfectJudge = new CItemToggle(CLangManager.LangInstance.GetString("SETTINGS_GAME_HIDEPERFECT"), OpenTaiko.ConfigIni.bHidePerfectJudge,
+			CLangManager.LangInstance.GetString("SETTINGS_GAME_HIDEPERFECT_DESC"));
+		this.list項目リスト.Add(this.iHidePerfectJudge);
+
 		this.iShowExExtraAnime = new CItemToggle(CLangManager.LangInstance.GetString("SETTINGS_GAME_EXEXTRAANIME"), OpenTaiko.ConfigIni.ShowExExtraAnime,
 			CLangManager.LangInstance.GetString("SETTINGS_GAME_EXEXTRAANIME_DESC"));
 		this.list項目リスト.Add(this.iShowExExtraAnime);
@@ -1640,6 +1648,8 @@ internal class CActConfigList : CActivity {
 	CItemToggle iShowExExtraAnime;
 	private CItemList iTimingDisplayMode;
 	private CItemToggle iTimingDisplayOnlyImperfect;
+	private CItemToggle iJudgeFastSlow;
+	private CItemToggle iHidePerfectJudge;
 	CItemToggle ShinuchiMode;
 	CItemToggle FastRender;
 	CItemToggle ASyncTextureLoad;
@@ -1801,6 +1811,8 @@ internal class CActConfigList : CActivity {
 		OpenTaiko.ConfigIni.bJudgeCountDisplay = this.iTaikoJudgeCountDisp.bON;
 		OpenTaiko.ConfigIni.nTimingDisplayMode = this.iTimingDisplayMode.n現在選択されている項目番号;
 		OpenTaiko.ConfigIni.bTimingDisplayOnlyImperfect = this.iTimingDisplayOnlyImperfect.bON;
+		OpenTaiko.ConfigIni.bJudgeFastSlow = this.iJudgeFastSlow.bON;
+		OpenTaiko.ConfigIni.bHidePerfectJudge = this.iHidePerfectJudge.bON;
 		OpenTaiko.ConfigIni.ShowExExtraAnime = this.iShowExExtraAnime.bON;
 		OpenTaiko.ConfigIni.bJudgeBigNotes = this.iTaikoBigNotesJudge.bON;
 		OpenTaiko.ConfigIni.bForceNormalGauge = this.iTaikoForceNormalGauge.bON;

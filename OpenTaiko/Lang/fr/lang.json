@@ -196,6 +196,10 @@
 		"SETTINGS_GAME_TIMINGDISPLAY_MS": "Millisecondes (+0ms)",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY": "Seulement sur OK/Mauvais",
 		"SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC": "Affiche la déviation du timing seulement pour les jugements OK ou Mauvais.",
+		"SETTINGS_GAME_JUDGEFASTSLOW": "Image Jugement Rapide/Lent",
+		"SETTINGS_GAME_JUDGEFASTSLOW_DESC": "Remplace l'image de jugement OK par Judge_Fast ou Judge_Slow selon le timing.",
+		"SETTINGS_GAME_HIDEPERFECT": "Masquer Jugement Parfait",
+		"SETTINGS_GAME_HIDEPERFECT_DESC": "Masque l'image de jugement Parfait. Les autres effets restent inchangés.",
 		"SETTINGS_GAME_BRANCHANIME": "Set d'animation des branches",
 		"SETTINGS_GAME_BRANCHANIME_DESC": "Change le set d'animation\nlors de la présence d'une branche.\nTYPE-A: Gen-2\nTYPE-B: Gen-3\n",
 
