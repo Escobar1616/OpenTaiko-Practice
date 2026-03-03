@@ -1355,7 +1355,9 @@ internal abstract class CStage演奏画面共通 : CStage {
 					pChip.bShow = false;
 				}
 				if (eJudgeResult != ENoteJudge.Auto && eJudgeResult != ENoteJudge.Miss) {
-					this.actJudgeString.Start(nPlayer, eJudgeResult);
+					// msDelta (TJA time) を実際のms (game time) に変換して渡す
+					int? displayMs = msDelta.HasValue ? (int?)Math.Round(CTja.TjaDurationToGameDuration(msDelta.Value)) : null;
+					this.actJudgeString.Start(nPlayer, eJudgeResult, displayMs);
 					bool isBigInput = nNowInput is NotesManager.EInputType.RedBig or NotesManager.EInputType.BlueBig || !OpenTaiko.ConfigIni.bJudgeBigNotes;
 					this.PlayHitNoteSound(nPlayer, nNowInput);
 					this.StartHitNoteLaneFlash(nPlayer, nNowInput, gt);

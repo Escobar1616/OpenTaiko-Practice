@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using FDK;
@@ -291,6 +291,7 @@ internal class CSkin : IDisposable {
 	public CSystemSound soundDecideSFX = null;
 	public CSystemSound soundCancelSFX = null;
 	public CSystemSound soundChangeSFX = null;
+	public CSystemSound soundOpenSongSettings = null;
 	public CSystemSound soundSongSelectChara = null;
 	public CSystemSound soundSkip = null;
 	public CSystemSound soundEntry = null;
@@ -640,6 +641,11 @@ internal class CSkin : IDisposable {
 		this.soundカーソル移動音 = new CSystemSound(@$"Sounds{System.IO.Path.DirectorySeparatorChar}Move.ogg", false, false, false, ESoundGroup.SoundEffect);
 		this.soundDecideSFX = new CSystemSound(@$"Sounds{System.IO.Path.DirectorySeparatorChar}Decide.ogg", false, false, false, ESoundGroup.SoundEffect);
 		this.soundChangeSFX = new CSystemSound(@$"Sounds{System.IO.Path.DirectorySeparatorChar}Change.ogg", false, false, false, ESoundGroup.SoundEffect);
+		{
+			var _base = @$"Sounds{System.IO.Path.DirectorySeparatorChar}OpenSongSettings";
+			var _file = File.Exists(CSkin.Path(_base + ".ogg")) ? _base + ".ogg" : _base + ".wav";
+			this.soundOpenSongSettings = new CSystemSound(_file, false, false, false, ESoundGroup.SoundEffect);
+		}
 		this.soundCancelSFX = new CSystemSound(@$"Sounds{System.IO.Path.DirectorySeparatorChar}Cancel.ogg", false, false, true, ESoundGroup.SoundEffect);
 		this.sound歓声音 = new CSystemSound(@$"Sounds{System.IO.Path.DirectorySeparatorChar}Audience.ogg", false, false, true, ESoundGroup.SoundEffect);
 		this.soundSTAGEFAILED音 = new CSystemSound(@$"Sounds{System.IO.Path.DirectorySeparatorChar}Stage failed.ogg", false, true, true, ESoundGroup.Voice);
@@ -3494,6 +3500,13 @@ internal class CSkin : IDisposable {
 									string[] strSplit = strParam.Split(',');
 									for (int i = 0; i < 2; i++) {
 										Game_Judge_Move[i] = int.Parse(strSplit[i]);
+									}
+									break;
+								}
+							case "Game_TimingDisplay_Offset": {
+									string[] strSplit = strParam.Split(',');
+									for (int i = 0; i < 2; i++) {
+										Game_TimingDisplay_Offset[i] = int.Parse(strSplit[i]);
 									}
 									break;
 								}
@@ -8355,6 +8368,7 @@ internal class CSkin : IDisposable {
 	public int[] Game_Judge_X = new int[] { 364, 364 };
 	public int[] Game_Judge_Y = new int[] { 152, 328 };
 	public int[] Game_Judge_Move = new int[] { 0, 20 };
+	public int[] Game_TimingDisplay_Offset = new int[] { 0, 0 };
 	public int[] Game_ScoreRank_X = new int[] { 87, 87 };
 	public int[] Game_ScoreRank_Y = new int[] { 98, 622 };
 	public int[] Game_ScoreRank_Move = new int[] { 0, 51 };

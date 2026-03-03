@@ -175,8 +175,10 @@ internal class CActPlayOption : CActivity {
 				continue;
 			}
 
-			if (ctOpen.CurrentValue == 0)
+			if (ctOpen.CurrentValue == 0) {
 				Init(player);
+				OpenTaiko.Skin.soundOpenSongSettings.tPlay();
+			}
 
 			ctOpen.Tick();
 			ctClose.Tick();

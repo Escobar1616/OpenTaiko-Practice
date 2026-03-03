@@ -1155,6 +1155,15 @@ internal class CConfigIni : INotifyPropertyChanged {
 
 	public bool bJudgeCountDisplay;
 
+	/// <summary>
+	/// タイミングズレ表示モード (0: OFF, 1: FAST/SLOW, 2: 秒 +0.000s, 3: ms +0ms)
+	/// </summary>
+	public int nTimingDisplayMode;
+	/// <summary>
+	/// 追加判定表示を可/不可の時のみ表示する
+	/// </summary>
+	public bool bTimingDisplayOnlyImperfect;
+
 	public bool ShowExExtraAnime;
 
 	public bool bEnableCountdownTimer;
@@ -1710,6 +1719,8 @@ internal class CConfigIni : INotifyPropertyChanged {
 		this.nBigNoteWaitTimems = 50;
 
 		this.bJudgeCountDisplay = false;
+		this.nTimingDisplayMode = 0;
+		this.bTimingDisplayOnlyImperfect = false;
 
 		ShowExExtraAnime = true;
 
@@ -2370,6 +2381,11 @@ internal class CConfigIni : INotifyPropertyChanged {
 		sw.WriteLine();
 		sw.WriteLine("; 判定数の表示(0:OFF, 1:ON)");
 		sw.WriteLine("JudgeCountDisplay={0}", this.bJudgeCountDisplay ? 1 : 0);
+		sw.WriteLine();
+		sw.WriteLine("; タイミングズレ表示モード (0:OFF, 1:FAST/SLOW, 2:秒, 3:ms)");
+		sw.WriteLine("TimingDisplayMode={0}", this.nTimingDisplayMode);
+		sw.WriteLine("; 追加判定表示を可/不可の時のみ表示する (0:OFF, 1:ON)");
+		sw.WriteLine("TimingDisplayOnlyImperfect={0}", this.bTimingDisplayOnlyImperfect ? 1 : 0);
 		sw.WriteLine();
 		sw.WriteLine("; 裏表移行アニメーションを有効する (0:OFF, 1:ON)");
 		sw.WriteLine("ShowExExtraAnime={0}", this.ShowExExtraAnime ? 1 : 0);
@@ -3298,6 +3314,12 @@ internal class CConfigIni : INotifyPropertyChanged {
 				break;
 			case "JudgeCountDisplay":
 				this.bJudgeCountDisplay = CConversion.bONorOFF(value[0]);
+				break;
+			case "TimingDisplayMode":
+				this.nTimingDisplayMode = CConversion.ParseIntInRange(value, 0, 3, 0);
+				break;
+			case "TimingDisplayOnlyImperfect":
+				this.bTimingDisplayOnlyImperfect = CConversion.bONorOFF(value[0]);
 				break;
 			case "ShowExExtraAnime":
 				this.ShowExExtraAnime = CConversion.bONorOFF(value[0]);

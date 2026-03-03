@@ -410,6 +410,20 @@ internal class CActConfigList : CActivity {
 			CLangManager.LangInstance.GetString("SETTINGS_GAME_SCOREDISPLAY_DESC"));
 		this.list項目リスト.Add(this.iTaikoJudgeCountDisp);
 
+		this.iTimingDisplayMode = new CItemList(CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY"), CItemList.EPanelType.Normal, OpenTaiko.ConfigIni.nTimingDisplayMode,
+			CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_DESC"),
+			new string[] {
+				CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_OFF"),
+				CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_FASTSLOW"),
+				CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_SECONDS"),
+				CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_MS")
+			});
+		this.list項目リスト.Add(this.iTimingDisplayMode);
+
+		this.iTimingDisplayOnlyImperfect = new CItemToggle(CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY"), OpenTaiko.ConfigIni.bTimingDisplayOnlyImperfect,
+			CLangManager.LangInstance.GetString("SETTINGS_GAME_TIMINGDISPLAY_IMPERFECTONLY_DESC"));
+		this.list項目リスト.Add(this.iTimingDisplayOnlyImperfect);
+
 		this.iShowExExtraAnime = new CItemToggle(CLangManager.LangInstance.GetString("SETTINGS_GAME_EXEXTRAANIME"), OpenTaiko.ConfigIni.ShowExExtraAnime,
 			CLangManager.LangInstance.GetString("SETTINGS_GAME_EXEXTRAANIME_DESC"));
 		this.list項目リスト.Add(this.iShowExExtraAnime);
@@ -1624,6 +1638,8 @@ internal class CActConfigList : CActivity {
 	CItemToggle ShowPuchiChara;
 	CItemToggle SimpleMode;
 	CItemToggle iShowExExtraAnime;
+	private CItemList iTimingDisplayMode;
+	private CItemToggle iTimingDisplayOnlyImperfect;
 	CItemToggle ShinuchiMode;
 	CItemToggle FastRender;
 	CItemToggle ASyncTextureLoad;
@@ -1783,6 +1799,8 @@ internal class CActConfigList : CActivity {
 
 		OpenTaiko.ConfigIni.eGameMode = (EGame)this.iTaikoGameMode.n現在選択されている項目番号;
 		OpenTaiko.ConfigIni.bJudgeCountDisplay = this.iTaikoJudgeCountDisp.bON;
+		OpenTaiko.ConfigIni.nTimingDisplayMode = this.iTimingDisplayMode.n現在選択されている項目番号;
+		OpenTaiko.ConfigIni.bTimingDisplayOnlyImperfect = this.iTimingDisplayOnlyImperfect.bON;
 		OpenTaiko.ConfigIni.ShowExExtraAnime = this.iShowExExtraAnime.bON;
 		OpenTaiko.ConfigIni.bJudgeBigNotes = this.iTaikoBigNotesJudge.bON;
 		OpenTaiko.ConfigIni.bForceNormalGauge = this.iTaikoForceNormalGauge.bON;
