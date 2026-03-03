@@ -21,7 +21,7 @@
 ## Setting
 
 * `SkinConfig.ini`またはそれにincludeされているini(主に`GameConfig.ini`)に`Game_TimingDisplay_Offset`を追加することで、追加判定表示の座標を設定可能
-
+* 遅延対策に、オーディオ出力は`WASAPI-Exclusive`か`ASIO`推奨
 
 
 
